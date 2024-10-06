@@ -1,29 +1,32 @@
+import logging
 from etl.extract import extract
 from etl.transform import transform
 from etl.load import load
-from src.utils import setup_logging
-import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def run_pipeline():
     """
-    Runs the ETL pipeline: Extract, Transform, Load.
+    Orchestrates the entire ETL pipeline process.
     """
-    setup_logging()
-    logging.info("Starting ETL pipeline...")
     try:
-        # Extract
-        data = extract()
-        logging.info(f"Extracted {len(data)} records.")
-
-        # Transform
-        df = transform(data)
-        logging.info(f"Transformed data into DataFrame with {len(df)} records.")
-
-        # Load
-        load(df)
-        logging.info("Data loaded successfully into the database.")
+        logging.info("Pipeline started...")
+        
+        # Extract data
+        extracted_data = extract()
+        
+        # Transform data
+        transformed_data = transform(extracted_data)
+        
+        # Load data into the database
+        load(transformed_data)
+        
+        logging.info("Pipeline completed successfully.")
+    
     except Exception as e:
-        logging.error(f"Pipeline failed: {e}")
+        logging.error(f"Pipeline encountered an error: {e}")
+        raise
 
 if __name__ == "__main__":
     run_pipeline()

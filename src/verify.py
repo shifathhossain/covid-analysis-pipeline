@@ -6,5 +6,4 @@ def verify_data():
     df = pd.read_sql('SELECT * FROM coronavirus_stats', engine)
     print(df.head())
 
-if __name__ == "__main__":
-    verify_data()
+verify_data()

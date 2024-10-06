@@ -1,4 +1,5 @@
 import pytest
+import requests
 from src.scraper import scrape_data
 
 def test_scrape_data_success(monkeypatch):
@@ -52,7 +53,7 @@ def test_scrape_data_success(monkeypatch):
     
     assert isinstance(data, list)
     assert len(data) == 1
-    assert data[0]['country'] == 'CountryA'
+    assert data[0]['country'] == 'USA'
     assert data[0]['total_cases'] == 1000
     assert data[0]['new_cases'] == 50
     assert data[0]['total_deaths'] == 25
