@@ -1,0 +1,9 @@
+database:
+  type: sqlite
+  name: data.db
+  location: data/processed/data.db
+
+scraper:
+  target_url: "https://www.worldometers.info/coronavirus/"
+  headers:
+    User-Agent: "Mozilla/5.0 (compatible; DataEngineerBot/1.0)"
